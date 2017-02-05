@@ -31,6 +31,7 @@ public class Textures {
 	public static Texture playButton2;
 	public static Texture sand;
 	public static Texture sky;
+	public static Texture test;
 	public static Texture unicorn;
 	public static Texture unicorn2;
 	public static Texture water;
@@ -57,7 +58,8 @@ public class Textures {
 			playButton = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/textures/playButton.png"));
 			playButton2 = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/textures/playButton2.png"));
 			sand = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/textures/sand.png"));
-			sky = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/textures/Sky.png"));
+			sky = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/textures/sky.png"));
+			test = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/textures/test.png"));
 			unicorn = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/textures/unicorn.png"));
 			unicorn2 = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/textures/unicorn2.png"));
 			water = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/textures/water.png"));

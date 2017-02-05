@@ -33,6 +33,7 @@ public class Entity {
 	public boolean isPlayer = false;
 	public boolean isSolid = true;
 	public boolean isSolidOnSIdes = false;
+	public boolean isStatic = false;
 	
 	public Entity(Texture texture, int x, int y, int width, int height){
 		this.x = x;

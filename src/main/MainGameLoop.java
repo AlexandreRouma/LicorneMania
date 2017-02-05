@@ -14,6 +14,7 @@ import graphics.DisplayManager;
 import graphics.Entity;
 import graphics.Fonts;
 import graphics.Renderer;
+import graphics.Textures;
 import physics.Physic;
 import presets.Mobs;
 import utilities.LevelLoader;
@@ -28,8 +29,11 @@ public class MainGameLoop {
 		running = true;
 		int points = 0;
 		Entity caracter = Mobs.Player(0,200);
+		Entity test = new Entity(Textures.test,0,0,128,128);
+		test.isStatic = true;
 		LevelLoader.load("C:/tmp/test.txt");
 		Renderer.addEntity(caracter);
+		Renderer.addEntity(test);
 		while (running){
 			Renderer.render();
 			Fonts.calibriSmall.drawString(0, 0, "" + points);

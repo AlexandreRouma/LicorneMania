@@ -9,6 +9,7 @@ package presets;
 
 import graphics.Entity;
 import graphics.Textures;
+import physics.Hitbox;
 
 public class Mobs {
 	
@@ -16,10 +17,9 @@ public class Mobs {
 		Entity entity = new Entity(Textures.unicorn, x, y, 128, 128);
 		entity.textures[1] = Textures.unicorn2;
 		entity.isAffectedByPhysics = true;
-		entity.currentHitbox.x = 11;
-		entity.currentHitbox.y = 0;
-		entity.currentHitbox.width = 106;
-		entity.currentHitbox.height = 128;
+		entity.currentHitbox = new Hitbox(16,0,75,128);
+		entity.hitboxes[0] = entity.currentHitbox;
+		entity.hitboxes[1] = new Hitbox(37,0,75,128);
 		entity.name = "PLAYER";
 		entity.isPlayer = true;
 		return entity;

@@ -26,16 +26,30 @@ public class Renderer {
 			Entity entity = entities.get(i);
 			entity.currentTexture.bind();
 	        
-	        GL11.glBegin(GL11.GL_QUADS);
-	        GL11.glTexCoord2f(0,0);
-            GL11.glVertex2f(entity.x - Camera.x, entity.y - Camera.y);
-            GL11.glTexCoord2f(1,0);
-            GL11.glVertex2f(entity.x - Camera.x + entity.width, entity.y - Camera.y);
-            GL11.glTexCoord2f(1,1);
-            GL11.glVertex2f(entity.x - Camera.x + entity.width, entity.y - Camera.y + entity.height);
-            GL11.glTexCoord2f(0,1);
-            GL11.glVertex2f(entity.x - Camera.x, entity.y - Camera.y + entity.height);
-	        GL11.glEnd();
+			if (entity.isStatic){
+				GL11.glBegin(GL11.GL_QUADS);
+		        GL11.glTexCoord2f(0,0);
+	            GL11.glVertex2f(entity.x, entity.y);
+	            GL11.glTexCoord2f(1,0);
+	            GL11.glVertex2f(entity.x + entity.width, entity.y);
+	            GL11.glTexCoord2f(1,1);
+	            GL11.glVertex2f(entity.x + entity.width, entity.y + entity.height);
+	            GL11.glTexCoord2f(0,1);
+	            GL11.glVertex2f(entity.x, entity.y + entity.height);
+		        GL11.glEnd();
+			}
+			else {
+				GL11.glBegin(GL11.GL_QUADS);
+		        GL11.glTexCoord2f(0,0);
+	            GL11.glVertex2f(entity.x - Camera.x, entity.y - Camera.y);
+	            GL11.glTexCoord2f(1,0);
+	            GL11.glVertex2f(entity.x - Camera.x + entity.width, entity.y - Camera.y);
+	            GL11.glTexCoord2f(1,1);
+	            GL11.glVertex2f(entity.x - Camera.x + entity.width, entity.y - Camera.y + entity.height);
+	            GL11.glTexCoord2f(0,1);
+	            GL11.glVertex2f(entity.x - Camera.x, entity.y - Camera.y + entity.height);
+		        GL11.glEnd();
+			}
 		}
 		
 		FPSCounter.frame();

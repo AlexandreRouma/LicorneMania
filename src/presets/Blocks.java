@@ -27,7 +27,6 @@ public class Blocks {
 	public static Entity Dirt(int x, int y){
 		Entity entity = new Entity(Textures.dirt, x, y, 128, 128);
 		entity.currentHitbox.y = 10;
-		entity.isSolid = false;
 		entity.name = "DIRT";
 		return entity;
 	}
