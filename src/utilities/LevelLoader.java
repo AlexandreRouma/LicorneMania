@@ -23,7 +23,7 @@ public class LevelLoader {
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 		    String line;
 		    line = br.readLine();
-		    while (line.contains("#") || line.contains("\n") || line.contains("\r") || line.length() == 0){
+		    while (line.startsWith("#") || line.startsWith("\n") || line.length() == 0){
 		    	System.out.println("[LevelLoader] Skipped: " + line);
 		    	line = br.readLine();
 		    }
@@ -38,7 +38,7 @@ public class LevelLoader {
 		    }
 		    while ((line = br.readLine()) != null) {
 		       String args[] = line.split(" ");
-		       if (!args[0].contains("#") && !args[0].contains("\n") && !line.startsWith("\r") && line.length() != 0){
+		       if (!args[0].startsWith("#") && !args[0].startsWith("\n") && line.length() != 0){
 		    	   int id = Integer.parseInt(args[0]);
 			       int x = Integer.parseInt(args[1]);
 			       int y = Integer.parseInt(args[2]);
@@ -63,6 +63,9 @@ public class LevelLoader {
 			    	   break;
 			       case 6:
 			    	   Renderer.addEntity(Items.Coin(x, y));
+			    	   break;
+			       case 255:
+			    	   Renderer.addEntity(Blocks.TestBlock(x, y));
 			    	   break;
 			       }
 			       objLoaded++;

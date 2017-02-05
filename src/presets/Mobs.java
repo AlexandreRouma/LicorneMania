@@ -21,7 +21,6 @@ public class Mobs {
 		entity.hitboxes[0] = entity.currentHitbox;
 		entity.hitboxes[1] = new Hitbox(37,0,75,128);
 		entity.name = "PLAYER";
-		entity.isPlayer = true;
 		return entity;
 	}
 	

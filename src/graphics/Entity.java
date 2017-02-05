@@ -30,7 +30,7 @@ public class Entity {
 	public boolean isAnimated = false;
 	public int id;
 	public boolean isJumping;
-	public boolean isPlayer = false;
+	//public boolean isPlayer = false;
 	public boolean isSolid = true;
 	public boolean isSolidOnSIdes = false;
 	public boolean isStatic = false;

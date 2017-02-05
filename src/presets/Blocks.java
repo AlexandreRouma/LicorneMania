@@ -73,4 +73,10 @@ public class Blocks {
 		return entity;
 	}
 	
+	public static Entity TestBlock(int x, int y){
+		Entity entity = new Entity(Textures.test, x, y, 128, 128);
+		entity.name = "TEST";
+		return entity;
+	}
+	
 }

@@ -125,7 +125,7 @@ public class Physic {
 		ArrayList<Entity> entities = Renderer.getEntities();
 		for (int i = 0; i < entities.size(); i++){
 			Entity entity = entities.get(i);
-			if ((Positions.isBetween(mob.HLX(), entity.HLX(), entity.HRX()) || Positions.isBetween(mob.HRX(), entity.HLX(), entity.HRX())) && (Positions.isBetween(mob.HUY(), entity.HUY(), entity.HLY()) || Positions.isBetween(mob.HLY(), entity.HUY(), entity.HLY())) && entity.isPlayer == false){
+			if ((Positions.isBetween(mob.HLX(), entity.HLX(), entity.HRX()) || Positions.isBetween(mob.HRX(), entity.HLX(), entity.HRX())) && (Positions.isBetween(mob.HUY(), entity.HUY(), entity.HLY()) || Positions.isBetween(mob.HLY(), entity.HUY(), entity.HLY()))){
 				finalEntity = entity;
 			}
 		}

@@ -17,7 +17,6 @@ public class ImageDrawer {
 		Entity entity = new Entity(image,x,y,image.getImageWidth(),image.getImageHeight());
 		entity.isAffectedByPhysics = false;
 		entity.isAnimated = false;
-		entity.isPlayer = false;
 		entity.isSolid = false;
 		entity.name = "GUI";
 		Renderer.addEntity(entity);
