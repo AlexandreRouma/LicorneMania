@@ -19,7 +19,7 @@ public class Physic {
 	public static int leftLimit = 8000;
 	public static int rightLimit = 0;
 	private static boolean isRunning;
-	public static int jumpHeight = 120;
+	public static int jumpHeight = 148;
 	
 	static Runnable runnable = new Runnable(){
 		public void run(){
@@ -30,7 +30,7 @@ public class Physic {
 					boolean isInWater = (Physic.getEntityThatEntityIsInside(entity).name == "WATER");
 					if (entity.isAffectedByPhysics){
 						groundLevel = getHeightUnderEntity(entity);
-						if (entity.getY() + entity.getH() < groundLevel){
+						if (entity.HLY() < groundLevel){
 							entity.move(0, 1);
 						}
 						
@@ -46,7 +46,7 @@ public class Physic {
 					if (entity.isJumping){
 						if (isInWater){		
 							entity.isAffectedByPhysics = false;
-							if (entity.getY() + entity.getW() < entity.getY() - jumpHeight){
+							if (entity.HLY() < groundLevel - jumpHeight){
 								entity.isJumping = false;
 								entity.isAffectedByPhysics = true;
 							}
@@ -57,7 +57,7 @@ public class Physic {
 						}
 						else{
 							entity.isAffectedByPhysics = false;
-							if (entity.getY() + entity.getW() < groundLevel - jumpHeight){
+							if (entity.HLY() < groundLevel - jumpHeight){
 								entity.isJumping = false;
 								entity.isAffectedByPhysics = true;
 							}
@@ -72,7 +72,6 @@ public class Physic {
 				try {
 					Thread.sleep(2);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -96,9 +95,9 @@ public class Physic {
 		ArrayList<Entity> entities = Renderer.getEntities();
 		for (int i = 0; i < entities.size(); i++){
 			Entity entity = entities.get(i);
-			if ((Positions.isBetween(mob.HLX(), entity.HLX(), entity.HRX()) || Positions.isBetween(mob.HRX(), entity.HLX(), entity.HRX())) && mob.HLY() <= entity.HUY() && entity.getIsbackground() == false && entity.isSolid == true){
-				if (entity.getY() < maxy){
-					maxy = entity.getY() + entity.getHitbox().getY();
+			if ((Positions.isBetween(mob.HLX(), entity.HLX(), entity.HRX()) || Positions.isBetween(mob.HRX(), entity.HLX(), entity.HRX())) && mob.HLY() <= entity.HUY() && entity.isSolid == true){
+				if (entity.y < maxy){
+					maxy = entity.y + entity.currentHitbox.y;
 				}
 			}
 		}
@@ -111,9 +110,9 @@ public class Physic {
 		ArrayList<Entity> entities = Renderer.getEntities();
 		for (int i = 0; i < entities.size(); i++){
 			Entity entity = entities.get(i);
-			if ((Positions.isBetween(mob.HLX(), entity.HLX(), entity.HRX()) || Positions.isBetween(mob.HRX(), entity.HLX(), entity.HRX())) && mob.HLY() <= entity.HUY() && entity.getIsbackground() == false){
-				if (entity.getY() < maxy){
-					maxy = entity.getY() + entity.getHitbox().getY();
+			if ((Positions.isBetween(mob.HLX(), entity.HLX(), entity.HRX()) || Positions.isBetween(mob.HRX(), entity.HLX(), entity.HRX())) && mob.HLY() <= entity.HUY()){
+				if (entity.y < maxy){
+					maxy = entity.y + entity.currentHitbox.y;
 					finalEntity = entity;
 				}
 			}
@@ -126,7 +125,7 @@ public class Physic {
 		ArrayList<Entity> entities = Renderer.getEntities();
 		for (int i = 0; i < entities.size(); i++){
 			Entity entity = entities.get(i);
-			if ((Positions.isBetween(mob.HLX(), entity.HLX(), entity.HRX()) || Positions.isBetween(mob.HRX(), entity.HLX(), entity.HRX())) && (Positions.isBetween(mob.HUY(), entity.HUY(), entity.HLY()) || Positions.isBetween(mob.HLY(), entity.HUY(), entity.HLY())) && entity.getIsbackground() == false && entity.isPlayer == false){
+			if ((Positions.isBetween(mob.HLX(), entity.HLX(), entity.HRX()) || Positions.isBetween(mob.HRX(), entity.HLX(), entity.HRX())) && (Positions.isBetween(mob.HUY(), entity.HUY(), entity.HLY()) || Positions.isBetween(mob.HLY(), entity.HUY(), entity.HLY())) && entity.isPlayer == false){
 				finalEntity = entity;
 			}
 		}

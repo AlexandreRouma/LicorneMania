@@ -12,24 +12,15 @@ import graphics.Textures;
 
 public class Mobs {
 	
-	public static Entity PlayerA(int x, int y){
-		Entity entity = new Entity(Textures.UnicornA, 0, 200, 100, 100);
+	public static Entity Player(int x, int y){
+		Entity entity = new Entity(Textures.unicorn, x, y, 128, 128);
+		entity.textures[1] = Textures.unicorn2;
 		entity.isAffectedByPhysics = true;
-		entity.hitbox.setY(0);
-		entity.hitbox.setH(100);
-		entity.hitbox.setX(11);
-		entity.hitbox.setW(60);
-		entity.name = "PLAYERA";
-		entity.isPlayer = true;
-		return entity;
-	}
-	
-	public static Entity PlayerB(int x, int y){
-		Entity entity = new Entity(Textures.UnicornB, 0, 200, 100, 100);
-		entity.isAffectedByPhysics = true;
-		entity.hitbox.setX(29);
-		entity.hitbox.setW(60);
-		entity.name = "PLAYERB";
+		entity.currentHitbox.x = 11;
+		entity.currentHitbox.y = 0;
+		entity.currentHitbox.width = 106;
+		entity.currentHitbox.height = 128;
+		entity.name = "PLAYER";
 		entity.isPlayer = true;
 		return entity;
 	}

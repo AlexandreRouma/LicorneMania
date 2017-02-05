@@ -14,8 +14,8 @@ import org.newdawn.slick.Color;
 
 public class DisplayManager {
 	
-	private static int screenWidth = 800;
-	private static int screenHeight = 480;
+	public static int screenWidth = 800;
+	public static int screenHeight = 480;
 	
 	public static void createDisplay(String title, int w, int h, boolean isFullScreen, boolean vsync){
 		setDisplayMode(w, h, isFullScreen);
@@ -39,14 +39,6 @@ public class DisplayManager {
         GL11.glOrtho(0, screenWidth, screenHeight, 0, 1, -1);
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
         Color.white.bind();
-	}
-	
-	public static int getScreenWidth() {
-		return screenWidth;
-	}
-
-	public static int getScreenHeight() {
-		return screenHeight;
 	}
 
 	public static void closeDisplay(){

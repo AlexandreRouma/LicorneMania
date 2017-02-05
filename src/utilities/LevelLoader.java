@@ -19,9 +19,14 @@ import presets.Items;
 public class LevelLoader {
 	public static void load(String file){
 		Renderer.clearEntity();
+		int objLoaded = 0;
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 		    String line;
 		    line = br.readLine();
+		    while (line.contains("#") || line.contains("\n") || line.contains("\r") || line.length() == 0){
+		    	System.out.println("[LevelLoader] Skipped: " + line);
+		    	line = br.readLine();
+		    }
 		    if (line.contains("SKY")){
 		    	Renderer.addEntity(Backgrounds.Sky());
 		    }
@@ -33,31 +38,37 @@ public class LevelLoader {
 		    }
 		    while ((line = br.readLine()) != null) {
 		       String args[] = line.split(" ");
-		       int id = Integer.parseInt(args[0]);
-		       int x = Integer.parseInt(args[1]);
-		       int y = Integer.parseInt(args[2]);
-		       switch (id){
-		       case 0:
-		    	   Renderer.addEntity(Blocks.Grass(x, y));
-		    	   break;
-		       case 1:
-		    	   Renderer.addEntity(Blocks.Water(x, y));
-		    	   break;
-		       case 2:
-		    	   Renderer.addEntity(Blocks.Lava(x, y));
-		    	   break;
-		       case 3:
-		    	   Renderer.addEntity(Blocks.EndGate(x, y));
-		    	   break;
-		       case 4:
-		    	   Renderer.addEntity(Blocks.Dirt(x, y));
-		    	   break;
-		       case 5:
-		    	   Renderer.addEntity(Blocks.Sand(x, y));
-		    	   break;
-		       case 6:
-		    	   Renderer.addEntity(Items.Coin(x, y));
-		    	   break;
+		       if (!args[0].contains("#") && !args[0].contains("\n") && !line.startsWith("\r") && line.length() != 0){
+		    	   int id = Integer.parseInt(args[0]);
+			       int x = Integer.parseInt(args[1]);
+			       int y = Integer.parseInt(args[2]);
+			       switch (id){
+			       case 0:
+			    	   Renderer.addEntity(Blocks.Grass(x, y));
+			    	   break;
+			       case 1:
+			    	   Renderer.addEntity(Blocks.Water(x, y));
+			    	   break;
+			       case 2:
+			    	   Renderer.addEntity(Blocks.Lava(x, y));
+			    	   break;
+			       case 3:
+			    	   Renderer.addEntity(Blocks.EndGate(x, y));
+			    	   break;
+			       case 4:
+			    	   Renderer.addEntity(Blocks.Dirt(x, y));
+			    	   break;
+			       case 5:
+			    	   Renderer.addEntity(Blocks.Sand(x, y));
+			    	   break;
+			       case 6:
+			    	   Renderer.addEntity(Items.Coin(x, y));
+			    	   break;
+			       }
+			       objLoaded++;
+		       }
+		       else {
+		    	   System.out.println("[LevelLoader] Skipped: " + line);
 		       }
 		    }
 		} catch (FileNotFoundException e) {
@@ -65,5 +76,6 @@ public class LevelLoader {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		System.out.println("[LevelLoader] Done, loaded " + objLoaded + " objects !");
 	}
 }

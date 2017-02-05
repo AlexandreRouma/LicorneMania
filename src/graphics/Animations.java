@@ -22,19 +22,19 @@ public class Animations {
 					if (entity.isAnimated){
 						switch (entity.frame){
 						case 0:
-							entity.setTexture(entity.textures[0]);
+							entity.currentTexture = entity.textures[0];
 							entity.frame = 1;
 							break;
 						case 1:
-							entity.setTexture(entity.textures[1]);
+							entity.currentTexture = entity.textures[1];
 							entity.frame = 2;
 							break;
 						case 2:
-							entity.setTexture(entity.textures[2]);
+							entity.currentTexture = entity.textures[2];
 							entity.frame = 3;
 							break;
 						case 3:
-							entity.setTexture(entity.textures[3]);
+							entity.currentTexture = entity.textures[3];
 							entity.frame = 0;
 							break;
 						}

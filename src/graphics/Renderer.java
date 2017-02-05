@@ -24,17 +24,17 @@ public class Renderer {
 		
 		for (int i = 0; i < entities.size(); i++){
 			Entity entity = entities.get(i);
-			entity.getTexture().bind();
+			entity.currentTexture.bind();
 	        
 	        GL11.glBegin(GL11.GL_QUADS);
-	            GL11.glTexCoord2f(0,0);
-	            GL11.glVertex2f(entity.getX() - Camera.getX(),entity.getY() - Camera.getY());
-	            GL11.glTexCoord2f(1,0);
-	            GL11.glVertex2f(entity.getX() - Camera.getX()+entity.getW(),entity.getY() - Camera.getY());
-	            GL11.glTexCoord2f(1,1);
-	            GL11.glVertex2f(entity.getX() - Camera.getX()+entity.getW(),entity.getY() - Camera.getY()+entity.getH());
-	            GL11.glTexCoord2f(0,1);
-	            GL11.glVertex2f(entity.getX() - Camera.getX(),entity.getY() - Camera.getY()+entity.getH());
+	        GL11.glTexCoord2f(0,0);
+            GL11.glVertex2f(entity.x - Camera.x, entity.y - Camera.y);
+            GL11.glTexCoord2f(1,0);
+            GL11.glVertex2f(entity.x - Camera.x + entity.width, entity.y - Camera.y);
+            GL11.glTexCoord2f(1,1);
+            GL11.glVertex2f(entity.x - Camera.x + entity.width, entity.y - Camera.y + entity.height);
+            GL11.glTexCoord2f(0,1);
+            GL11.glVertex2f(entity.x - Camera.x, entity.y - Camera.y + entity.height);
 	        GL11.glEnd();
 		}
 		
@@ -44,7 +44,7 @@ public class Renderer {
 	
 	public static void addEntity(Entity entity){
 		entities.add(entity);
-		entity.setId(entities.indexOf(entity));
+		entity.id = entities.indexOf(entity);
 	}
 	
 	public static ArrayList<Entity> getEntities() {

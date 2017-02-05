@@ -14,7 +14,6 @@ public class Backgrounds {
 	public static Entity MenuBackground(){
 		Entity entity = new Entity(Textures.menuBack, 0, 0, 1024, 1024);
 		entity.isAffectedByPhysics = false;
-		entity.setIsbackground(true);
 		entity.name = "MNBACK";
 		return entity;
 	}
@@ -22,7 +21,6 @@ public class Backgrounds {
 	public static Entity Sky(){
 		Entity entity = new Entity(Textures.sky, 0, 0, 8000, 480);
 		entity.isAffectedByPhysics = false;
-		entity.setIsbackground(true);
 		entity.name = "SKY";
 		return entity;
 	}

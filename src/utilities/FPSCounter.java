@@ -10,7 +10,7 @@ package utilities;
 public class FPSCounter {
 	
 	private static int FPSCount;
-	private static int FPS;
+	public static int FPS;
 	private static boolean isRunning;
 	
 	static Runnable counter = new Runnable(){
@@ -43,10 +43,6 @@ public class FPSCounter {
 		if (isRunning == true){
 			FPSCount++;
 		}
-	}
-
-	public static int getFPS() {
-		return FPS;
 	}
 	
 }

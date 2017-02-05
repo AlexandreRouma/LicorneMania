@@ -7,57 +7,49 @@
 
 package graphics;
 
+import org.lwjgl.input.Mouse;
 import org.newdawn.slick.opengl.Texture;
 
 import physics.Hitbox;
+import utilities.Positions;
 
 public class Entity {
 	
-	public Texture texture;
 	public Texture textures[] = new Texture[4];
-	private int x;
-	private int y;
-	private int w;
-	private int h;
+	public Texture currentTexture;
+	public Hitbox hitboxes[] = new Hitbox[4];
+	public Hitbox currentHitbox = new Hitbox(0,0,0,0);
+	public int x;
+	public int y;
+	public int width;
+	public int height;
 	public int frame;
-	private boolean isbackground;
+	public boolean isbackground;
 	public String name = "";
+	public boolean isAffectedByPhysics = true;
 	public boolean isAnimated = false;
+	public int id;
+	public boolean isJumping;
 	public boolean isPlayer = false;
 	public boolean isSolid = true;
 	public boolean isSolidOnSIdes = false;
 	
-	
-	public boolean getIsbackground() {
-		return this.isbackground;
-	}
-
-	public void setIsbackground(boolean isbackground) {
-		this.isbackground = isbackground;
-	}
-
-	public boolean isAffectedByPhysics;
-	public boolean isJumping;
-	private int id;
-	public Hitbox hitbox = new Hitbox(0, 0, 0, 0);
-	
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-	public Entity(Texture texture, int x, int y, int w, int h){
-		this.texture = texture;
+	public Entity(Texture texture, int x, int y, int width, int height){
 		this.x = x;
 		this.y = y;
-		this.setW(w);
-		this.setH(h);
+		this.width = width;
+		this.height = height;
 		this.isAffectedByPhysics = false;
 		this.isJumping = false;
-		this.hitbox.setX(0);
-		this.hitbox.setY(0);
-		this.hitbox.setH(h);
-		this.hitbox.setW(w);
-		this.texture = texture;
+		this.currentHitbox.x = 0;
+		this.currentHitbox.y = 0;
+		this.currentHitbox.height = height;
+		this.currentHitbox.width = width;
+		this.hitboxes[0] = currentHitbox;
+		this.hitboxes[1] = currentHitbox;
+		this.hitboxes[2] = currentHitbox;
+		this.hitboxes[3] = currentHitbox;
+		this.currentTexture = texture;
 		this.textures[0] = texture;
 		this.textures[1] = texture;
 		this.textures[2] = texture;
@@ -65,88 +57,51 @@ public class Entity {
 	}
 	
 	public int HLX(){
-		return this.x + this.hitbox.getX();
+		return this.x + this.currentHitbox.x;
 	}
 	
 	public int HRX(){
-		return this.x + this.hitbox.getX() + this.hitbox.getW();
+		return this.x + this.currentHitbox.x + this.currentHitbox.width;
 	}
 	
 	public int HUY(){
-		return this.y + this.hitbox.getY();
+		return this.y + this.currentHitbox.y;
 	}
 	
 	public int HLY(){
-		return this.y + this.hitbox.getY() + this.hitbox.getH();
-	}
-	
-	public boolean isAffectedByPhysics() {
-		return isAffectedByPhysics;
-	}
-
-	public void setAffectedByPhysics(boolean isAffectedByPhysics) {
-		this.isAffectedByPhysics = isAffectedByPhysics;
-	}
-
-	public boolean isJumping() {
-		return this.isJumping;
-	}
-
-	public void setJumping(boolean isJumping) {
-		this.isJumping = isJumping;
-	}
-
-	public Hitbox getHitbox() {
-		return this.hitbox;
+		return this.y + this.currentHitbox.y + this.currentHitbox.height;
 	}
 
 	public void move(int xmv, int ymv){
 		this.x = x + xmv;
 		this.y = y + ymv;
 	}
-
-	public int getId() {
-		return this.id;
-	}
-
-	public Texture getTexture() {
-		return this.texture;
-	}
-
-	public void setTexture(Texture texture) {
-		this.texture = texture;
-	}
-
-	public int getX() {
-		return this.x;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public int getY() {
-		return this.y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
+	
+	public boolean mouseHover(){
+		if (Positions.isBetween(Mouse.getX(), this.x + this.currentHitbox.x, this.x + this.currentHitbox.x + this.currentHitbox.width) && Positions.isBetween(Mouse.getY(), this.y + this.currentHitbox.y, this.y + this.currentHitbox.y + this.currentHitbox.height)){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 	
-	public int getH() {
-		return this.h;
+	public boolean leftClicked(){
+		if (Positions.isBetween(Mouse.getX(), this.x + this.currentHitbox.x, this.x + this.currentHitbox.x + this.currentHitbox.width) && Positions.isBetween(Mouse.getY(), this.y + this.currentHitbox.y, this.y + this.currentHitbox.y + this.currentHitbox.height) && Mouse.isButtonDown(0)){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 	
-	public void setH(int h) {
-		this.h = h;
-	}
-	
-	public int getW() {
-		return this.w;
-	}
-	
-	public void setW(int w) {
-		this.w = w;
+	public boolean rightClicked(){
+		if (Positions.isBetween(Mouse.getX(), this.x + this.currentHitbox.x, this.x + this.currentHitbox.x + this.currentHitbox.width) && Positions.isBetween(Mouse.getY(), this.y + this.currentHitbox.y, this.y + this.currentHitbox.y + this.currentHitbox.height)&& Mouse.isButtonDown(1)){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 	
 }

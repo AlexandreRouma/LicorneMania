@@ -14,7 +14,6 @@ import graphics.DisplayManager;
 import graphics.Entity;
 import graphics.Fonts;
 import graphics.Renderer;
-import graphics.Textures;
 import physics.Physic;
 import presets.Mobs;
 import utilities.LevelLoader;
@@ -28,7 +27,7 @@ public class MainGameLoop {
 		Renderer.clearEntity();
 		running = true;
 		int points = 0;
-		Entity caracter = Mobs.PlayerA(0,200);
+		Entity caracter = Mobs.Player(0,200);
 		LevelLoader.load("C:/tmp/test.txt");
 		Renderer.addEntity(caracter);
 		while (running){
@@ -38,29 +37,28 @@ public class MainGameLoop {
 				if (Physic.getEntityThatEntityIsInside(caracter).name == "WATER"){
 					caracter.isJumping = true;
 				}
-				else if(caracter.getY() + caracter.hitbox.getY() + caracter.hitbox.getH() == Physic.groundLevel){
+				else if(caracter.y + caracter.currentHitbox.y + caracter.currentHitbox.height == Physic.groundLevel){
 					caracter.isJumping = true;
 				}
 			}
 			
 			if (Keyboard.isKeyDown(Keyboard.KEY_Q)){
-				if (caracter.getTexture() == Textures.UnicornA){
-					caracter.setTexture(Mobs.PlayerB(0,0).getTexture());
-					caracter.hitbox = Mobs.PlayerB(0,0).hitbox;
+				if (caracter.currentTexture == caracter.textures[0]){
+					caracter.currentTexture = caracter.textures[1];
 				}
-				if (caracter.getX() + 50 > 404){
+				if (caracter.x + 50 > 404){
 					Camera.move(-4, 0);
 				}
-				if (caracter.getX() > 3){
+				if (caracter.x > 3){
 					caracter.move(-4, 0);
 				}
 			}
 			
 			if (Keyboard.isKeyDown(Keyboard.KEY_D)){
-				if (caracter.getTexture() == Textures.UnicornB){
-					caracter.setTexture(Textures.UnicornA);
+				if (caracter.currentTexture == caracter.textures[1]){
+					caracter.currentTexture = caracter.textures[0];
 				}
-				if (caracter.getX() + 50 > 400){
+				if (caracter.x + 50 > 400){
 					Camera.move(4, 0);
 				}
 				caracter.move(4, 0);
@@ -70,16 +68,16 @@ public class MainGameLoop {
 			
 			if (entityImInside.name == "LAVA"){
 				Renderer.clearEntity();
-				Camera.setX(0);
-				Camera.setY(0);
+				Camera.x = 0;
+				Camera.y = 0;
 				DeathMenu.display("La lave, sa brule !");
 				running = false;
 			}
 			
 			if (entityImInside.name == "ENDGATE"){
 				Renderer.clearEntity();
-				Camera.setX(0);
-				Camera.setY(0);
+				Camera.x = 0;
+				Camera.y = 0;
 				DeathMenu.display("T'A GAGNE !!!!!!!");
 				running = false;
 			}
@@ -89,10 +87,10 @@ public class MainGameLoop {
 				points++;
 			}
 			
-			if (caracter.getY() > 480){
+			if (caracter.HLY() > 480){
 				Renderer.clearEntity();
-				Camera.setX(0);
-				Camera.setY(0);
+				Camera.x = 0;
+				Camera.y = 0;
 				DeathMenu.display("T'est tombé comme une merde");
 				running = false;
 			}
@@ -105,8 +103,8 @@ public class MainGameLoop {
 		}
 		
 		Renderer.clearEntity();
-		Camera.setX(0);
-		Camera.setY(0);
+		Camera.x = 0;
+		Camera.y = 0;
 		
 	}
 	

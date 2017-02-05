@@ -15,7 +15,7 @@ public class ImageDrawer {
 	
 	public static Entity drawImage(Texture image, int x, int y){
 		Entity entity = new Entity(image,x,y,image.getImageWidth(),image.getImageHeight());
-		entity.setAffectedByPhysics(false);
+		entity.isAffectedByPhysics = false;
 		entity.isAnimated = false;
 		entity.isPlayer = false;
 		entity.isSolid = false;

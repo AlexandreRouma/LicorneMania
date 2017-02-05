@@ -8,47 +8,15 @@ package physics;
 
 public class Hitbox {
 	
-	private int x;
-	private int y;
-	private int w;
-	private int h;
+	public int x;
+	public int y;
+	public int width;
+	public int height;
 	
-	public Hitbox(int xc, int yc, int hc, int wc){
-		this.x = xc;
-		this.y = yc;
-		this.w = wc;
-		this.h = hc;
-	}
- 
-	public int getX() {
-		return this.x;
-	}
-
-	public int getY() {
-		return this.y;
-	}
-
-	public int getW() {
-		return this.w;
-	}
-
-	public int getH() {
-		return this.h;
-	}
-
-	public void setX(int x) {
+	public Hitbox(int x, int y, int width, int height){
 		this.x = x;
-	}
-
-	public void setY(int y) {
 		this.y = y;
+		this.width = width;
+		this.height = height;
 	}
-
-	public void setW(int w) {
-		this.w = w;
-	}
-
-	public void setH(int h) {
-		this.h = h;
-	}	
 }
