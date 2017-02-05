@@ -14,7 +14,6 @@ import graphics.DisplayManager;
 import graphics.Entity;
 import graphics.Fonts;
 import graphics.Renderer;
-import graphics.Textures;
 import physics.Physic;
 import presets.Mobs;
 import utilities.LevelLoader;
